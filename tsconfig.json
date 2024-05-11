@@ -7,13 +7,12 @@
     "experimentalDecorators": true,
     "isolatedModules": true,
     "lib": ["ES2021"],
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "baseUrl": "./src",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "outDir": "./dist",
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "target": "es2019"
+    "target": "esnext"
   }
 }

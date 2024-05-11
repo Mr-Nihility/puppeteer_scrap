@@ -15,18 +15,19 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.12.11",
-    "nodemon": "^3.1.0",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.4.5",
-    "prettier": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0"
+    "eslint-plugin-prettier": "^5.0.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
+    "puppeteer": "^22.8.0",
     "puppeteer-core": "^22.8.0"
   }
 }
