@@ -1,5 +1,3 @@
-import { createWriteStream } from 'node:fs';
-import https from 'node:https';
 import { CatalogueService } from './CatalogueService/catalogue-service';
 import { FileManager } from './FileManager/fs-service';
 import { getFileNameWithTimestamp, parseUrl } from './utils/helpers';
@@ -19,26 +17,14 @@ class Entry {
     );
 
     await this.fm.createFile(
-      `${getFileNameWithTimestamp()}${parseUrl(this.TARGET_URL)}.json`,
+      `${getFileNameWithTimestamp()}_${parseUrl(this.TARGET_URL)}.json`,
       JSON.stringify(catalogueList),
     );
 
     for (let i = 0; i < catalogueList.length; i++) {
-      await this.downLoadPdf(catalogueList[i].url);
+      await this.fm.downLoadPdf(catalogueList[i].url);
     }
   };
-
-  private async downLoadPdf(path: string) {
-    https.get(path, (res) => {
-      const splittedPath = path.split('/');
-      const fileName = splittedPath[splittedPath.length - 1];
-      const stream = createWriteStream(`download/${fileName}`);
-      res.pipe(stream);
-      stream.on('finish', () => {
-        stream.close();
-      });
-    });
-  }
 }
 
 new Entry(new FileManager(), new CatalogueService());

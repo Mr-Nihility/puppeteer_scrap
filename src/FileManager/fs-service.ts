@@ -1,6 +1,7 @@
 import { access, mkdir, writeFile } from 'fs/promises';
+import { createWriteStream } from 'node:fs';
+import https from 'node:https';
 import path from 'path';
-
 export class FileManager {
   DOWNLOAD_PATH = path.resolve('./download');
   constructor() {
@@ -25,5 +26,17 @@ export class FileManager {
     } catch (error) {
       console.error('Error creating file:', error);
     }
+  }
+
+  public async downLoadPdf(path: string) {
+    https.get(path, (res) => {
+      const splittedPath = path.split('/');
+      const fileName = splittedPath[splittedPath.length - 1];
+      const stream = createWriteStream(`${this.DOWNLOAD_PATH}/${fileName}`);
+      res.pipe(stream);
+      stream.on('finish', () => {
+        stream.close();
+      });
+    });
   }
 }
